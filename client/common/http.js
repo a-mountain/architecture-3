@@ -1,6 +1,6 @@
-const request = require("request");
+const request = require('request');
 
-const Client = (baseUrl) => {
+const createHttpClient = (baseUrl) => {
   return {
     get: (path) => {
       return new Promise((resolve, reject) => {
@@ -17,7 +17,7 @@ const Client = (baseUrl) => {
       return new Promise((resolve, reject) => {
         request(
           `${baseUrl}${path}`,
-          { json: true, method: "POST", body: data },
+          { json: true, method: 'POST', body: data },
           (err, res, body) => {
             if (err) {
               reject(err);
@@ -31,4 +31,4 @@ const Client = (baseUrl) => {
   };
 };
 
-module.exports = { Client };
+module.exports = { createHttpClient };

@@ -1,13 +1,13 @@
-const channels = require('./menu/client');
+const api = require('./restaurant/api');
 
-const client = channels.Client('http://localhost:8080');
+const restaurantApi = api.createRestaurantApi('http://localhost:8080');
 
-// Scenario 1: Display menu list.
-client.getMenu()
+// Scenario 1: Display restaurant list.
+restaurantApi.getMenu()
     .then((menu) => {
         console.log('=== Scenario 1 ===');
         console.log('Menu:');
-        list.forEach((dish) => {
+        menu.forEach((dish) => {
             const { price, name } = dish;
             console.log({ name, price })
         });
@@ -17,10 +17,10 @@ client.getMenu()
     });
 
 // Scenario 2: Create new order.
-client.createOrder({ dishIds: [0, 2, 3], tableId: 3 })
-    .then((resp) => {
+restaurantApi.createOrder({ menuItemIds: [0, 2, 3], tableId: 3 })
+    .then((order) => {
         console.log('=== Scenario 2 ===');
-        console.log('Create order response:', resp);
+        console.log('Create order response:', order);
     })
     .catch((e) => {
         console.log(`Problem creating a new order: ${e.message}`);
