@@ -8,8 +8,8 @@ restaurantApi.getMenu()
         console.log('=== Scenario 1 ===');
         console.log('Menu:');
         menu.forEach((dish) => {
-            const { price, name } = dish;
-            console.log({ name, price })
+            const { id, price, name } = dish;
+            console.log({ id, name, price })
         });
     })
     .catch((e) => {
@@ -17,7 +17,7 @@ restaurantApi.getMenu()
     });
 
 // Scenario 2: Create new order.
-restaurantApi.createOrder({ menuItemIds: [0, 2, 3], tableId: 3 })
+restaurantApi.createOrder({ menuItemIds: [1, 2, 3], tableId: 3 })
     .then((order) => {
         console.log('=== Scenario 2 ===');
         console.log('Create order response:', order);
@@ -25,4 +25,3 @@ restaurantApi.createOrder({ menuItemIds: [0, 2, 3], tableId: 3 })
     .catch((e) => {
         console.log(`Problem creating a new order: ${e.message}`);
     });
-    
